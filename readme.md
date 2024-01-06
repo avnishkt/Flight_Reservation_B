@@ -10,3 +10,7 @@
    utils
    config
  -test/
+
+
+
+npx sesulize init <-created many folder for me->
