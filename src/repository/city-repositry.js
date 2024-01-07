@@ -25,14 +25,19 @@ class CityRepository {
       throw { error };
     }
   }
-  async updateCity() {
+  async updateCity(cityId,data) {
    try {
-    const  city =await City.update(data,
-        { where:{
+    // const  city =await City.update(data,
+    //     { where:{
  
-         id:cityId
-         }})
-         return city;
+    //      id:cityId
+    //      }})
+    //      return city;
+
+    const city =await City.findByPk(cityId);
+    city.name =data.name;
+    await city.save();
+    return city;
    } catch (error) {
     console.log("something went wrong in repositry of city");
       throw { error };
@@ -42,6 +47,15 @@ class CityRepository {
     try {
       const city = await City.findByPk(cityId); //have in built where clouse
       return city;
+    } catch (error) {
+      console.log("something went wrong in repositry of city");
+      throw { error };
+    }
+  }
+  async getAllCities() {
+    try {
+      const cities= await City.findAll();
+      return cities;
     } catch (error) {
       console.log("something went wrong in repositry of city");
       throw { error };
